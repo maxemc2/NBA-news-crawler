@@ -1,0 +1,42 @@
+# Python-related
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.so
+
+# Django-related
+*.log
+local_settings.py
+db.sqlite3
+
+# Docker-related
+docker-compose.override.yml
+*.env
+.env.*
+
+# Log files
+*.log
+
+# Static files
+staticfiles/
+media/
+
+# Virtual environments
+venv/
+.env/
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Docker volumes
+volumes/
+postgres_data/
+
+# Celery Beat schedule
+celerybeat-schedule

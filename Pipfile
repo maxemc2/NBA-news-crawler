@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+webdriver-manager = "*"
+celery = "*"
+django = "*"
+selenium = "*"
+redis = "*"
+bs4 = "*"
+psycopg2-binary = "*"
+djangorestframework = "*"
+django-redis = "*"
+channels = "*"
+channels-redis = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
+python_full_version = "3.9.6"

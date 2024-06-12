@@ -1,0 +1,16 @@
+django
+djangorestframework
+django-redis
+# websocket
+# channels
+# channels-redis
+# daphne
+# postgresSQL
+psycopg2
+# schedule to triger tasks
+celery
+redis
+# crawler
+bs4
+selenium
+webdriver-manager

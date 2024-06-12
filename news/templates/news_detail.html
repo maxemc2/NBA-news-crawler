@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ news.title }}</title>
+    <style>
+        .news-title {
+            display: flex;
+            justify-content: space-between;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .news-content {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .news-image img {
+            width: 50%; /* 最大為頁面寬度的一半 */
+            padding: 10px; /* 添加 padding */
+            display: block;
+            margin: 0 auto;
+        }
+        .news-paragraph {
+            padding: 0;
+        }
+        .latest-update {
+            text-align: right;
+            font-size: 14px;
+            color: gray;
+            margin-bottom: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding: 6px 12px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #000;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="latest-update">
+        最新更新時間: {{ latest_update.updated_time }}
+    </div>
+    <div class="news-title">
+        {{ news.title }}
+        <a href="{% url 'index' %}" class="back-button">返回</a>
+    </div>
+    <div class="news-content">
+        {% if images %}
+            <div class="news-image">
+                <img src="{{ images.0.url }}" alt="News Image">
+            </div>
+        {% endif %}
+        {% for paragraph in content_paragraphs %}
+            <p class="news-paragraph">{{ paragraph }}</p>
+        {% endfor %}
+        {% for image in images %}
+            {% if forloop.counter > 1 and image.following_text %}
+                <div class="news-image">
+                    <img src="{{ image.url }}" alt="News Image">
+                </div>
+                <p class="news-paragraph">{{ image.following_text }}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
