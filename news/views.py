@@ -11,7 +11,6 @@ def index(request):
     latest_news = cache.get('latest_news')
 
     if not latest_news:
-        # If cache is empty, query the database
         latest_news = News.objects.order_by('-updated_time')[:10]
         # Store the news in cache for 5 minutes
         cache.set('latest_news', latest_news, timeout=300)
@@ -20,7 +19,6 @@ def index(request):
     latest_update = cache.get('latest_update')
 
     if not latest_update:
-        # If cache is empty, query the database
         latest_update = UpdateTime.objects.order_by('-updated_time').first()
         # Store the latest update time in cache for 5 minutes
         cache.set('latest_update', latest_update, timeout=300)
@@ -32,12 +30,10 @@ def index(request):
     return render(request, 'index.html', context)
 
 def news_detail(request, news_id):
-    # Create a cache key based on news_id
     cache_key = f'news_{news_id}'
     news = cache.get(cache_key)
 
     if not news:
-        # If cache is empty, query the database
         news = get_object_or_404(News, id=news_id)
         # Store the news in cache for 5 minutes
         cache.set(cache_key, news, timeout=300)
@@ -49,7 +45,6 @@ def news_detail(request, news_id):
     latest_update = cache.get('latest_update')
 
     if not latest_update:
-        # If cache is empty, query the database
         latest_update = UpdateTime.objects.order_by('-updated_time').first()
         # Store the latest update time in cache for 5 minutes
         cache.set('latest_update', latest_update, timeout=300)
@@ -71,7 +66,6 @@ class NewsListAPIView(generics.ListAPIView):
         latest_news = cache.get('latest_news')
 
         if not latest_news:
-            # If cache is empty, query the database
             latest_news = News.objects.order_by('-updated_time')[:10]
             # Store the news in cache for 5 minutes
             cache.set('latest_news', latest_news, timeout=300)
@@ -81,12 +75,10 @@ class NewsListAPIView(generics.ListAPIView):
 # Retrieve details of a specific news by ID
 @api_view(['GET'])
 def news_detail_api(request, news_id):
-    # Create a cache key based on news_id
     cache_key = f'news_{news_id}'
     news_data = cache.get(cache_key)
 
     if not news_data:
-        # If cache is empty, query the database
         news = get_object_or_404(News, id=news_id)
         images = news.images.all()
         content_paragraphs = news.content.split('\n')

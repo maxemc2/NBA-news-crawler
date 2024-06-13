@@ -13,7 +13,7 @@
             vertical-align: top;
         }
         .news-image img {
-            width: 100%; /* 固定宽度为单元格宽度 */
+            width: 100%;
         }
         .news-title {
             font-size: 16px;
@@ -30,9 +30,9 @@
 </head>
 <body>
     <div class="latest-update">
-        最新更新时间: <span id="latest-update">{{ latest_update.updated_time }}</span>
+        最新更新時間: <span id="latest-update">{{ latest_update.updated_time }}</span>
     </div>
-    <h1>最新新闻</h1>
+    <h1>最新新聞</h1>
     <table class="news-table">
         <tr id="news-rows">
             {% for news in latest_news %}
@@ -41,7 +41,7 @@
                         {% if news.images.all %}
                             <img src="{{ news.images.all.0.url }}" alt="News Image">
                         {% else %}
-                            <img src="default_image_url" alt="No Image Available"> <!-- 默认图片 -->
+                            <img src="default_image_url" alt="No Image Available">
                         {% endif %}
                     </div>
                     <div class="news-title">
@@ -90,7 +90,7 @@
                 firstRow.appendChild(newsItem);
             }
 
-            // 更新最新更新时间
+            // 更新最新時間
             document.getElementById('latest-update').textContent = new Date().toLocaleString();
         }
     </script> -->

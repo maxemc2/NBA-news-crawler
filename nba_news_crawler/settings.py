@@ -154,7 +154,7 @@ CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 CELERY_BEAT_SCHEDULE = {
     'fetch-and-store-news-every-10-minutes': {
         'task': 'news.tasks.fetch_and_store_news',
-        'schedule': crontab(minute='*/1'),
+        'schedule': crontab(minute='*/10'),
     },
 }
 

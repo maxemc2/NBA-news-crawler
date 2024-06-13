@@ -16,7 +16,6 @@ def fetch_and_store_news():
 
     for title, url in news_list.items():
         news_data = fetch_news_data(url)
-        print(news_data)
         news, created = News.objects.update_or_create(
             title=title,
             url=url,
